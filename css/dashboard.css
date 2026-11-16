@@ -1,0 +1,601 @@
+/* ==========================================================================
+   Vishal Hypermarket & Store Management System
+   Dashboard Layout & Widgets Stylesheet
+   ========================================================================== */
+
+/* Quick Actions Top Bar */
+.dashboard-actions-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   6 Dynamic Statistic Cards Grid
+   ========================================================================== */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.15rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-border);
+}
+
+.stat-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: transparent;
+}
+
+.stat-card.stat-primary::after { background-color: var(--primary); }
+.stat-card.stat-info::after { background-color: #0284c7; }
+.stat-card.stat-warning::after { background-color: var(--status-low-stock); }
+.stat-card.stat-danger::after { background-color: var(--status-out-stock); }
+.stat-card.stat-success::after { background-color: var(--status-in-stock); }
+.stat-card.stat-purple::after { background-color: #7c3aed; }
+
+.stat-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.85rem;
+}
+
+.stat-label {
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.stat-icon-box {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.stat-primary .stat-icon-box { background-color: var(--primary-light); color: var(--primary); }
+.stat-info .stat-icon-box { background-color: #e0f2fe; color: #0284c7; }
+.stat-warning .stat-icon-box { background-color: var(--status-low-stock-bg); color: var(--status-low-stock); }
+.stat-danger .stat-icon-box { background-color: var(--status-out-stock-bg); color: var(--status-out-stock); }
+.stat-success .stat-icon-box { background-color: var(--status-in-stock-bg); color: var(--status-in-stock); }
+.stat-purple .stat-icon-box { background-color: #f3e8ff; color: #7c3aed; }
+
+.stat-value {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.stat-footer-text {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+/* ==========================================================================
+   Dashboard Main Sections Layout Grid
+   ========================================================================== */
+
+.dashboard-row-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.75rem;
+  margin-bottom: 1.75rem;
+}
+
+.dashboard-row-3col {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.75rem;
+  margin-bottom: 1.75rem;
+}
+
+/* Chart Canvas Wrapper */
+.chart-container-dash {
+  position: relative;
+  height: 240px;
+  width: 100%;
+}
+
+.chart-legend-custom {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border);
+}
+
+.legend-stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.legend-stat-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.legend-stat-val {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+/* Category Summary Grid inside Card */
+.category-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 0.85rem;
+}
+
+.category-summary-card {
+  background-color: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.category-summary-card:hover {
+  background-color: #fff;
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.cat-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.cat-name {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--text-dark);
+}
+
+.cat-pill {
+  background-color: #fff;
+  border: 1px solid var(--border);
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+}
+
+.cat-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.cat-stat {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.74rem;
+}
+
+.cat-label {
+  color: var(--text-muted);
+}
+
+.cat-val {
+  color: var(--text-dark);
+}
+
+/* ==========================================================================
+   Stock Alerts Sections (Low Stock & Out of Stock)
+   ========================================================================== */
+
+.alerts-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.alert-product-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background-color: var(--surface);
+  transition: var(--transition);
+}
+
+.alert-product-card:hover {
+  box-shadow: var(--shadow-sm);
+}
+
+.alert-product-card.out-of-stock-card {
+  border-left: 4px solid var(--status-out-stock);
+  background-color: #fffafa;
+}
+
+.alert-product-media {
+  width: 54px;
+  height: 54px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: #fff;
+  padding: 2px;
+  flex-shrink: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.alert-product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.alert-product-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.alert-product-title {
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--text-dark);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.alert-product-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.meta-tag {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  background-color: var(--surface-alt);
+  padding: 0.1rem 0.4rem;
+  border-radius: var(--radius-sm);
+}
+
+.stock-progress-wrap {
+  margin-top: 0.4rem;
+}
+
+.stock-progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  margin-bottom: 0.2rem;
+}
+
+.stock-progress-bar {
+  height: 6px;
+  background-color: var(--surface-alt);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.stock-progress-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+}
+
+.fill-warning {
+  background-color: var(--status-low-stock);
+}
+
+.alert-danger-notice {
+  font-size: 0.74rem;
+  color: var(--status-out-stock);
+  margin-top: 0.3rem;
+}
+
+.alert-empty-box {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  background-color: var(--surface-alt);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-size: 0.86rem;
+}
+
+/* ==========================================================================
+   Recently Added Products List
+   ========================================================================== */
+
+.recent-products-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.recent-product-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.recent-product-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.recent-product-img-box {
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: #fff;
+  padding: 2px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.recent-product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.recent-product-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.recent-product-name {
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--text-dark);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.recent-product-meta {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.2rem;
+}
+
+.recent-product-pricing {
+  text-align: right;
+  min-width: 90px;
+}
+
+.recent-price {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--text-dark);
+}
+
+.recent-cost {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Recent Inventory Activity Section
+   ========================================================================== */
+
+.recent-activity-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.activity-timeline-item {
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+  padding: 0.85rem;
+  background-color: var(--surface-alt);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+.activity-thumb-box {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-sm);
+  background-color: #fff;
+  border: 1px solid var(--border);
+  padding: 2px;
+  flex-shrink: 0;
+}
+
+.activity-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.activity-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.activity-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.activity-product {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--text-dark);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.activity-details {
+  margin-top: 0.2rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.activity-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.4rem;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+/* Quick Stock Adjustment Modal Box inside Dashboard */
+.stock-adjust-calc-box {
+  background-color: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+  margin: 1rem 0;
+}
+
+.calc-box-title {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.calc-box-result {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* Segmented Toggle Control */
+.segmented-control {
+  display: flex;
+  background-color: var(--surface-alt);
+  padding: 3px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  margin-bottom: 1rem;
+}
+
+.segmented-option {
+  flex: 1;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.segmented-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+}
+
+.segmented-label {
+  display: block;
+  padding: 0.5rem;
+  border-radius: calc(var(--radius-sm) - 2px);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: var(--transition);
+}
+
+.segmented-option input[type="radio"]:checked + .segmented-label {
+  background-color: #fff;
+  color: var(--text-dark);
+  box-shadow: var(--shadow-xs);
+}
+
+.segmented-option input[type="radio"][value="add"]:checked + .segmented-label {
+  color: var(--status-in-stock);
+}
+
+.segmented-option input[type="radio"][value="remove"]:checked + .segmented-label {
+  color: var(--status-out-stock);
+}
+
+/* ==========================================================================
+   Responsive Breakpoints for Dashboard
+   ========================================================================== */
+
+@media (max-width: 1400px) {
+  .stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dashboard-row-2col,
+  .dashboard-row-3col {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-actions-bar {
+    width: 100%;
+  }
+
+  .dashboard-actions-bar .btn {
+    flex: 1;
+  }
+}

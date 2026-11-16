@@ -1,0 +1,266 @@
+/* ==========================================================================
+   Vishal Hypermarket & Store Management System
+   Insights & Analytics Stylesheet
+   ========================================================================== */
+
+/* Metric Observations Grid */
+.insights-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.insight-metric-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.insight-metric-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.metric-stock .insight-metric-icon { background-color: var(--primary-light); color: var(--primary); }
+.metric-value .insight-metric-icon { background-color: #ecfdf5; color: var(--status-in-stock); }
+.metric-low .insight-metric-icon { background-color: var(--status-low-stock-bg); color: var(--status-low-stock); }
+.metric-out .insight-metric-icon { background-color: var(--status-out-stock-bg); color: var(--status-out-stock); }
+
+.insight-metric-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.insight-metric-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.insight-metric-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-top: 0.2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.insight-metric-sub {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.15rem;
+}
+
+/* ==========================================================================
+   4 Charts Grid (2x2)
+   ========================================================================== */
+
+.insights-charts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.75rem;
+  margin-bottom: 2rem;
+}
+
+.chart-card-insights {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.chart-title-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-main-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.chart-sub-title {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.1rem;
+}
+
+.chart-wrapper {
+  position: relative;
+  height: 280px;
+  width: 100%;
+}
+
+/* Priority Reorder Spotlight Section with Photographs */
+.reorder-spotlight-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.reorder-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.15rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: var(--transition);
+}
+
+.reorder-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.reorder-card.reorder-zero {
+  border-left: 4px solid var(--status-out-stock);
+  background-color: #fffafa;
+}
+
+.reorder-card.reorder-low {
+  border-left: 4px solid var(--status-low-stock);
+}
+
+.reorder-card-media {
+  width: 100%;
+  height: 120px;
+  border-radius: var(--radius-sm);
+  background-color: #f8fafc;
+  border: 1px solid var(--border);
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-bottom: 0.85rem;
+}
+
+.reorder-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.reorder-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.reorder-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.35rem 0 0.85rem;
+}
+
+.reorder-metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.5rem;
+  background-color: var(--surface-alt);
+  padding: 0.65rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1rem;
+}
+
+.reorder-metric {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.reorder-card-action {
+  margin-top: auto;
+}
+
+.reorder-card-action .btn {
+  width: 100%;
+}
+
+.spotlight-healthy-card {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 2rem;
+  background-color: var(--status-in-stock-bg);
+  border: 1px solid var(--status-in-stock-border);
+  border-radius: var(--radius-md);
+}
+
+@media (max-width: 1100px) {
+  .insights-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .insights-charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .insights-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Print Stylesheet for Report Export */
+@media print {
+  .app-sidebar,
+  .app-topbar,
+  .btn,
+  .sidebar-toggle-btn {
+    display: none !important;
+  }
+
+  .app-main {
+    margin-left: 0 !important;
+  }
+
+  .page-container {
+    padding: 0 !important;
+  }
+
+  .content-card,
+  .chart-card-insights {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+    break-inside: avoid;
+  }
+}

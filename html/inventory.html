@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory Management - Vishal Hypermarket & Store Management</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/inventory.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
+</head>
+<body>
+
+  <div class="app-wrapper">
+    <!-- Mobile Sidebar Backdrop Overlay -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="app-sidebar" id="app-sidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-link">
+          <div class="brand-logo-icon">
+            <i class="fa-solid fa-cart-shopping"></i>
+          </div>
+          <div class="brand-text-block">
+            <span class="brand-title store-brand-name">Vishal Hypermarket</span>
+            <span class="brand-tagline">Store Management</span>
+          </div>
+        </a>
+        <button class="sidebar-close-btn" id="sidebar-close" aria-label="Close Sidebar">&times;</button>
+      </div>
+
+      <div class="sidebar-body">
+        <div class="sidebar-menu-heading">Main Menu</div>
+        <ul class="sidebar-nav">
+          <li>
+            <a href="dashboard.html">
+              <i class="fa-solid fa-chart-pie"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="products.html">
+              <i class="fa-solid fa-boxes-stacked"></i>
+              <span>Products</span>
+            </a>
+          </li>
+          <li>
+            <a href="inventory.html" class="active">
+              <i class="fa-solid fa-warehouse"></i>
+              <span>Inventory</span>
+            </a>
+          </li>
+          <li>
+            <a href="insights.html">
+              <i class="fa-solid fa-chart-line"></i>
+              <span>Insights</span>
+            </a>
+          </li>
+          <li>
+            <a href="settings.html">
+              <i class="fa-solid fa-sliders"></i>
+              <span>Settings</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="sidebar-menu-heading" style="margin-top: 1.5rem;">Session</div>
+        <ul class="sidebar-nav">
+          <li>
+            <a href="#" class="action-logout text-danger">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-store-card">
+          <div class="sidebar-store-avatar">
+            <i class="fa-solid fa-store"></i>
+          </div>
+          <div class="sidebar-store-details">
+            <div class="sidebar-store-name store-brand-name">Vishal Hypermarket</div>
+            <div class="sidebar-store-status">
+              <span class="status-dot-pulse"></span>
+              <span>System Online</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="app-main">
+      <!-- Top Navigation Bar -->
+      <header class="app-topbar">
+        <div class="topbar-left">
+          <button class="sidebar-toggle-btn" id="sidebar-toggle" aria-label="Toggle menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="topbar-page-header">
+            <div class="topbar-breadcrumb">
+              <span>Vishal Hypermarket</span>
+              <i class="fa-solid fa-chevron-right text-xs"></i>
+              <span class="text-primary font-medium">Inventory & Stock</span>
+            </div>
+            <h2 class="topbar-page-title">Stock Monitoring & Adjustments</h2>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <div class="topbar-date-badge">
+            <i class="fa-regular fa-calendar-days"></i>
+            <span id="current-date-display">Today</span>
+          </div>
+
+          <!-- Notification Bell -->
+          <div class="topbar-notification-wrap">
+            <button class="topbar-icon-btn" id="notification-bell-btn" aria-label="Notifications">
+              <i class="fa-regular fa-bell"></i>
+              <span class="notification-count-badge" id="notification-badge" style="display: none;">0</span>
+            </button>
+            <div class="notification-dropdown-menu" id="notification-dropdown">
+              <div class="notif-dropdown-header">
+                <span class="notif-dropdown-title"><i class="fa-solid fa-bell"></i> Stock Alert Notifications</span>
+              </div>
+              <div class="notif-dropdown-list" id="notification-list"></div>
+              <div class="notif-dropdown-footer">
+                <a href="inventory.html" class="text-primary">Refresh Inventory &rarr;</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Admin Profile Badge -->
+          <div class="topbar-admin-badge">
+            <div class="admin-avatar">A</div>
+            <div class="admin-meta">
+              <span class="admin-display-name">Admin Manager</span>
+              <span class="admin-role">Store Admin</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Page Container -->
+      <main class="page-container">
+        <!-- Page Header -->
+        <div class="page-header-row">
+          <div class="page-header-text">
+            <h1>Store Inventory & Stock Levels</h1>
+            <p>Monitor real-time product quantities, make stock inward/outward adjustments, and trace inventory activity history.</p>
+          </div>
+          <div>
+            <a href="products.html" class="btn btn-secondary">
+              <i class="fa-solid fa-boxes-stacked"></i> Open Product Catalog
+            </a>
+          </div>
+        </div>
+
+        <!-- Inventory Summary Cards -->
+        <section class="inventory-summary-cards">
+          <div class="inv-stat-card inv-stat-total">
+            <div class="inv-stat-content">
+              <span class="inv-stat-title">Total Units in Stock</span>
+              <span class="inv-stat-value" id="inv-stat-total-stock">0</span>
+            </div>
+            <div class="inv-stat-icon"><i class="fa-solid fa-cubes-stacked"></i></div>
+          </div>
+
+          <div class="inv-stat-card inv-stat-in">
+            <div class="inv-stat-content">
+              <span class="inv-stat-title">Healthy Stock Level</span>
+              <span class="inv-stat-value text-success" id="inv-stat-in-stock">0 Items</span>
+            </div>
+            <div class="inv-stat-icon"><i class="fa-solid fa-circle-check"></i></div>
+          </div>
+
+          <div class="inv-stat-card inv-stat-low">
+            <div class="inv-stat-content">
+              <span class="inv-stat-title">Low Stock Alert</span>
+              <span class="inv-stat-value text-warning" id="inv-stat-low-stock">0 Items</span>
+            </div>
+            <div class="inv-stat-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+          </div>
+
+          <div class="inv-stat-card inv-stat-out">
+            <div class="inv-stat-content">
+              <span class="inv-stat-title">Out of Stock</span>
+              <span class="inv-stat-value text-danger" id="inv-stat-out-stock">0 Items</span>
+            </div>
+            <div class="inv-stat-icon"><i class="fa-solid fa-circle-xmark"></i></div>
+          </div>
+        </section>
+
+        <!-- Inventory Toolbar -->
+        <div class="content-card" style="margin-bottom: 1.5rem;">
+          <div class="card-body" style="padding: 1.15rem;">
+            <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+              <div style="flex: 1; min-width: 240px; position: relative;">
+                <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 0.95rem; top: 50%; transform: translateY(-50%); color: var(--text-light);"></i>
+                <input type="text" id="inventory-search" class="form-control" style="padding-left: 2.6rem;" placeholder="Search inventory by product name, SKU, or department...">
+              </div>
+
+              <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+                <select id="inventory-status-filter" class="form-control" style="width: auto;">
+                  <option value="">All Stock Statuses</option>
+                  <option value="in_stock">In Stock (> Min)</option>
+                  <option value="low_stock">Low Stock (≤ Min)</option>
+                  <option value="out_of_stock">Out of Stock (0)</option>
+                </select>
+
+                <select id="inventory-category-filter" class="form-control" style="width: auto;">
+                  <option value="">All Categories</option>
+                </select>
+
+                <button type="button" class="btn btn-outline-secondary" id="btn-clear-inv-filters" title="Reset filters">
+                  <i class="fa-solid fa-rotate-left"></i> Reset
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inventory Stock Monitoring Table -->
+        <div class="content-card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <div class="card-title-icon"><i class="fa-solid fa-warehouse"></i></div>
+              <div>
+                <h3 class="card-title">Live Stock Master Table</h3>
+                <p class="card-subtitle">Real-time stock counts, safety minimum levels, status badges, and update actions</p>
+              </div>
+            </div>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">
+              <span class="badge badge-success"><i class="fa-solid fa-circle-check"></i> In Stock</span>
+              <span class="badge badge-warning" style="margin-left: 0.35rem;"><i class="fa-solid fa-triangle-exclamation"></i> Low Stock</span>
+              <span class="badge badge-danger" style="margin-left: 0.35rem;"><i class="fa-solid fa-circle-xmark"></i> Out of Stock</span>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table-custom" id="inventory-table">
+              <thead>
+                <tr>
+                  <th class="text-center" style="width: 40px;">#</th>
+                  <th style="width: 70px;">Photo</th>
+                  <th>Product Name & Brand</th>
+                  <th>SKU</th>
+                  <th>Category</th>
+                  <th class="text-center">Current Stock</th>
+                  <th class="text-center">Min Threshold</th>
+                  <th class="text-center">Status</th>
+                  <th>Last Updated</th>
+                  <th class="text-center" style="width: 140px;">Adjustment</th>
+                </tr>
+              </thead>
+              <tbody id="inventory-table-body">
+                <!-- Dynamically populated via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Empty State -->
+          <div class="empty-state" id="inventory-empty-state" style="display: none;">
+            <div class="empty-state-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
+            <h3 class="empty-state-title">No matching inventory items</h3>
+            <p class="empty-state-desc">Try clearing the search query or status filter.</p>
+          </div>
+        </div>
+
+        <!-- Inventory Activity History Section -->
+        <div class="content-card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <div class="card-title-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+              <div>
+                <h3 class="card-title">Inventory Adjustment History & Audit Trail</h3>
+                <p class="card-subtitle">Traceable record of all manual stock changes, vendor deliveries, and inventory audits</p>
+              </div>
+            </div>
+            <span class="badge badge-info"><i class="fa-solid fa-shield-halved"></i> Audit Verified</span>
+          </div>
+          <div class="table-responsive">
+            <table class="table-custom" id="activity-table">
+              <thead>
+                <tr>
+                  <th class="text-center" style="width: 40px;">#</th>
+                  <th style="width: 60px;">Photo</th>
+                  <th>Product Name</th>
+                  <th class="text-center">Previous Qty</th>
+                  <th class="text-center">Adjustment</th>
+                  <th class="text-center">New Qty</th>
+                  <th>Type</th>
+                  <th>Reason for Adjustment</th>
+                  <th>Date & Time</th>
+                </tr>
+              </thead>
+              <tbody id="activity-table-body">
+                <!-- Dynamically populated via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Activity Empty State -->
+          <div class="empty-state" id="activity-empty-state" style="display: none;">
+            <div class="empty-state-icon"><i class="fa-solid fa-clipboard-list"></i></div>
+            <h3 class="empty-state-title">No stock adjustments recorded yet</h3>
+            <p class="empty-state-desc">Stock updates and manual adjustments will appear here automatically.</p>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Stock Adjustment Modal -->
+  <div class="modal-backdrop" id="stock-adjust-modal">
+    <div class="modal-dialog modal-md">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fa-solid fa-sliders text-primary"></i> Stock Adjustment Form</h3>
+        <button class="modal-close" id="stock-adjust-close" aria-label="Close">&times;</button>
+      </div>
+      <form id="stock-adjust-form">
+        <div class="modal-body">
+          <!-- Product Information Banner -->
+          <div class="adjust-modal-product-summary">
+            <div class="adjust-modal-thumb-box">
+              <img id="adjust-product-img" src="" alt="Product">
+            </div>
+            <div class="adjust-modal-meta">
+              <div class="adjust-modal-name" id="adjust-product-name">—</div>
+              <div class="adjust-modal-sub">
+                <span>SKU: <strong id="adjust-product-sku" class="font-mono">—</strong></span>
+                <span>Category: <strong id="adjust-product-category">—</strong></span>
+              </div>
+            </div>
+            <div class="adjust-current-stock-box">
+              <div class="adjust-current-stock-label">Current Stock</div>
+              <div class="adjust-current-stock-val" id="adjust-current-stock-badge">0</div>
+            </div>
+          </div>
+
+          <!-- Adjustment Direction (Add / Remove) -->
+          <div class="segmented-control">
+            <label class="segmented-option">
+              <input type="radio" name="adjustType" value="add" checked>
+              <span class="segmented-label"><i class="fa-solid fa-plus"></i> Inward (+ Stock Add)</span>
+            </label>
+            <label class="segmented-option">
+              <input type="radio" name="adjustType" value="remove">
+              <span class="segmented-label"><i class="fa-solid fa-minus"></i> Outward (- Stock Remove)</span>
+            </label>
+          </div>
+
+          <!-- Quantity Input -->
+          <div class="form-group">
+            <label for="adjust-quantity" class="form-label">Adjustment Quantity <span class="required">*</span></label>
+            <input type="number" id="adjust-quantity" class="form-control font-bold" min="1" step="1" required value="10">
+            <div class="form-hint">Enter the number of physical units to add or deduct.</div>
+          </div>
+
+          <!-- Negative Stock Warning Alert -->
+          <div class="adjust-error-alert" id="adjust-error-alert"></div>
+
+          <!-- Real-Time Stock Calculation Preview Box -->
+          <div class="adjust-calc-preview-card">
+            <div>
+              <div class="calc-formula-text" id="adjust-calc-formula">—</div>
+              <div class="text-xs text-muted">Stock Calculation Formula</div>
+            </div>
+            <div class="calc-result-badge">
+              <div class="calc-result-label">Projected Stock</div>
+              <div class="calc-result-number" id="adjust-preview-result">0 units</div>
+            </div>
+          </div>
+
+          <!-- Adjustment Reason -->
+          <div class="form-group">
+            <label for="adjust-reason" class="form-label">Reason for Stock Adjustment <span class="required">*</span></label>
+            <select id="adjust-reason" class="form-control">
+              <option value="New Stock Delivery / Vendor Consignment">New Stock Delivery / Vendor Consignment</option>
+              <option value="Inventory Audit Correction">Inventory Audit Correction</option>
+              <option value="Damaged Goods / Expired Stock">Damaged Goods / Expired Stock</option>
+              <option value="Customer Return">Customer Return</option>
+              <option value="Internal Store Transfer / Shelf Restock">Internal Store Transfer / Shelf Restock</option>
+              <option value="Theft or Loss Write-off">Theft or Loss Write-off</option>
+              <option value="Other">Other (Custom Reason)</option>
+            </select>
+          </div>
+
+          <!-- Custom Reason Field -->
+          <div class="form-group" id="adjust-custom-reason-wrap" style="display: none;">
+            <label for="adjust-custom-reason" class="form-label">Specify Custom Reason</label>
+            <input type="text" id="adjust-custom-reason" class="form-control" placeholder="Describe the reason for stock adjustment...">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="stock-adjust-cancel">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="btn-save-stock-adjust">
+            <i class="fa-solid fa-check"></i> Apply Adjustment & Save
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../js/data.js"></script>
+  <script src="../js/common.js"></script>
+  <script src="../js/inventory.js"></script>
+</body>
+</html>

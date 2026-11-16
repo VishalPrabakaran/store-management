@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products Management - Vishal Hypermarket & Store Management</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/products.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
+</head>
+<body>
+
+  <div class="app-wrapper">
+    <!-- Mobile Sidebar Backdrop Overlay -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="app-sidebar" id="app-sidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-link">
+          <div class="brand-logo-icon">
+            <i class="fa-solid fa-cart-shopping"></i>
+          </div>
+          <div class="brand-text-block">
+            <span class="brand-title store-brand-name">Vishal Hypermarket</span>
+            <span class="brand-tagline">Store Management</span>
+          </div>
+        </a>
+        <button class="sidebar-close-btn" id="sidebar-close" aria-label="Close Sidebar">&times;</button>
+      </div>
+
+      <div class="sidebar-body">
+        <div class="sidebar-menu-heading">Main Menu</div>
+        <ul class="sidebar-nav">
+          <li>
+            <a href="dashboard.html">
+              <i class="fa-solid fa-chart-pie"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="products.html" class="active">
+              <i class="fa-solid fa-boxes-stacked"></i>
+              <span>Products</span>
+            </a>
+          </li>
+          <li>
+            <a href="inventory.html">
+              <i class="fa-solid fa-warehouse"></i>
+              <span>Inventory</span>
+            </a>
+          </li>
+          <li>
+            <a href="insights.html">
+              <i class="fa-solid fa-chart-line"></i>
+              <span>Insights</span>
+            </a>
+          </li>
+          <li>
+            <a href="settings.html">
+              <i class="fa-solid fa-sliders"></i>
+              <span>Settings</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="sidebar-menu-heading" style="margin-top: 1.5rem;">Session</div>
+        <ul class="sidebar-nav">
+          <li>
+            <a href="#" class="action-logout text-danger">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-store-card">
+          <div class="sidebar-store-avatar">
+            <i class="fa-solid fa-store"></i>
+          </div>
+          <div class="sidebar-store-details">
+            <div class="sidebar-store-name store-brand-name">Vishal Hypermarket</div>
+            <div class="sidebar-store-status">
+              <span class="status-dot-pulse"></span>
+              <span>System Online</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="app-main">
+      <!-- Top Navigation Bar -->
+      <header class="app-topbar">
+        <div class="topbar-left">
+          <button class="sidebar-toggle-btn" id="sidebar-toggle" aria-label="Toggle menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="topbar-page-header">
+            <div class="topbar-breadcrumb">
+              <span>Vishal Hypermarket</span>
+              <i class="fa-solid fa-chevron-right text-xs"></i>
+              <span class="text-primary font-medium">Products Management</span>
+            </div>
+            <h2 class="topbar-page-title">Product Catalog</h2>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <div class="topbar-date-badge">
+            <i class="fa-regular fa-calendar-days"></i>
+            <span id="current-date-display">Today</span>
+          </div>
+
+          <!-- Notification Bell -->
+          <div class="topbar-notification-wrap">
+            <button class="topbar-icon-btn" id="notification-bell-btn" aria-label="Notifications">
+              <i class="fa-regular fa-bell"></i>
+              <span class="notification-count-badge" id="notification-badge" style="display: none;">0</span>
+            </button>
+            <div class="notification-dropdown-menu" id="notification-dropdown">
+              <div class="notif-dropdown-header">
+                <span class="notif-dropdown-title"><i class="fa-solid fa-bell"></i> Stock Alert Notifications</span>
+              </div>
+              <div class="notif-dropdown-list" id="notification-list"></div>
+              <div class="notif-dropdown-footer">
+                <a href="inventory.html" class="text-primary">Go to Inventory Management &rarr;</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Admin Profile Badge -->
+          <div class="topbar-admin-badge">
+            <div class="admin-avatar">A</div>
+            <div class="admin-meta">
+              <span class="admin-display-name">Admin Manager</span>
+              <span class="admin-role">Store Admin</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Page Container -->
+      <main class="page-container">
+        <!-- Page Header -->
+        <div class="page-header-row">
+          <div class="page-header-text">
+            <h1>Product Catalog & Inventory Items</h1>
+            <p>Manage product listings, pricing, SKU codes, categories, and real product photographs.</p>
+          </div>
+          <div>
+            <button class="btn btn-primary" id="btn-open-add-product">
+              <i class="fa-solid fa-plus"></i> Add New Product
+            </button>
+          </div>
+        </div>
+
+        <!-- Filter & Search Toolbar -->
+        <div class="products-toolbar">
+          <div class="toolbar-primary-row">
+            <div class="search-input-wrap">
+              <i class="fa-solid fa-magnifying-glass search-icon"></i>
+              <input type="text" id="search-input" class="form-control search-input-control" placeholder="Search by product name, brand, SKU code, or category...">
+            </div>
+            <span class="toolbar-count-badge" id="products-count-badge">Loading products...</span>
+          </div>
+
+          <div class="toolbar-filters-row">
+            <!-- Category Filter -->
+            <div class="filter-item">
+              <span class="filter-label"><i class="fa-solid fa-filter"></i> Category:</span>
+              <select id="filter-category" class="filter-select">
+                <option value="">All Categories</option>
+              </select>
+            </div>
+
+            <!-- Stock Status Filter -->
+            <div class="filter-item">
+              <span class="filter-label"><i class="fa-solid fa-chart-simple"></i> Status:</span>
+              <select id="filter-status" class="filter-select">
+                <option value="">All Statuses</option>
+                <option value="in_stock">In Stock (> Min)</option>
+                <option value="low_stock">Low Stock (≤ Min)</option>
+                <option value="out_of_stock">Out of Stock (0)</option>
+              </select>
+            </div>
+
+            <!-- Sort By -->
+            <div class="filter-item">
+              <span class="filter-label"><i class="fa-solid fa-arrow-down-wide-short"></i> Sort:</span>
+              <select id="sort-by" class="filter-select">
+                <option value="newest">Recently Added</option>
+                <option value="oldest">Oldest First</option>
+                <option value="name_asc">Name (A &rarr; Z)</option>
+                <option value="name_desc">Name (Z &rarr; A)</option>
+                <option value="price_desc">Price (High &rarr; Low)</option>
+                <option value="price_asc">Price (Low &rarr; High)</option>
+                <option value="stock_desc">Stock (High &rarr; Low)</option>
+                <option value="stock_asc">Stock (Low &rarr; High)</option>
+              </select>
+            </div>
+
+            <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-clear-filters" title="Reset all search queries and filters">
+              <i class="fa-solid fa-rotate-left"></i> Clear Filters
+            </button>
+          </div>
+        </div>
+
+        <!-- Products Table Card -->
+        <div class="content-card">
+          <div class="table-responsive">
+            <table class="table-custom" id="products-table">
+              <thead>
+                <tr>
+                  <th class="text-center" style="width: 40px;">#</th>
+                  <th style="width: 70px;">Photo</th>
+                  <th>Product Name & Brand</th>
+                  <th>SKU</th>
+                  <th>Category</th>
+                  <th class="text-right">Cost Price</th>
+                  <th class="text-right">Selling Price</th>
+                  <th class="text-center">Stock</th>
+                  <th class="text-center">Min Level</th>
+                  <th class="text-center">Status</th>
+                  <th>Added Date</th>
+                  <th class="text-center" style="width: 90px;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="products-table-body">
+                <!-- Dynamically populated via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Empty State -->
+          <div class="empty-state" id="products-empty-state" style="display: none;">
+            <div class="empty-state-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+            <h3 class="empty-state-title">No matching products found</h3>
+            <p class="empty-state-desc">Try modifying your search keywords or clear current category and stock filters.</p>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Add Product Modal -->
+  <div class="modal-backdrop" id="add-product-modal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fa-solid fa-plus-circle text-primary"></i> Add New Product to Inventory</h3>
+        <button class="modal-close" id="add-product-close" aria-label="Close">&times;</button>
+      </div>
+      <form id="add-product-form">
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="add-product-name" class="form-label">Product Name <span class="required">*</span></label>
+              <input type="text" id="add-product-name" class="form-control" placeholder="e.g. Aavin Milk (Toned 500ml)" required>
+            </div>
+            <div class="form-group">
+              <label for="add-product-sku" class="form-label">SKU / Product ID <span class="required">*</span></label>
+              <input type="text" id="add-product-sku" class="form-control font-mono" placeholder="e.g. DAI-001" required>
+              <div class="form-hint">Must be unique (no duplicate SKUs allowed).</div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="add-product-category" class="form-label">Category <span class="required">*</span></label>
+              <input type="text" id="add-product-category" list="category-options-add" class="form-control" placeholder="Select or type department" required>
+              <datalist id="category-options-add">
+                <option value="Dairy">
+                <option value="Grains">
+                <option value="Grocery">
+                <option value="Snacks">
+                <option value="Beverages">
+                <option value="Personal Care">
+                <option value="Household">
+              </datalist>
+            </div>
+            <div class="form-group">
+              <label for="add-product-brand" class="form-label">Brand Name <span class="required">*</span></label>
+              <input type="text" id="add-product-brand" class="form-control" placeholder="e.g. Aavin, India Gate, Fortune" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="add-product-cost" class="form-label">Cost Price (₹) <span class="required">*</span></label>
+              <input type="number" id="add-product-cost" class="form-control" min="0" step="0.01" placeholder="22.00" required>
+            </div>
+            <div class="form-group">
+              <label for="add-product-price" class="form-label">Selling Price (₹) <span class="required">*</span></label>
+              <input type="number" id="add-product-price" class="form-control" min="0" step="0.01" placeholder="25.00" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="add-product-stock" class="form-label">Initial Stock Quantity <span class="required">*</span></label>
+              <input type="number" id="add-product-stock" class="form-control" min="0" step="1" value="25" required>
+            </div>
+            <div class="form-group">
+              <label for="add-product-min-stock" class="form-label">Minimum Stock Alert Threshold <span class="required">*</span></label>
+              <input type="number" id="add-product-min-stock" class="form-control" min="0" step="1" value="10" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="add-product-image" class="form-label">Product Photograph URL or Local Path</label>
+            <input type="text" id="add-product-image" class="form-control" placeholder="../assets/images/aavin-milk.jpg or https://...">
+            <div class="form-hint">Enter local asset path (../assets/images/...) or public HTTPS image URL.</div>
+
+            <!-- Quick Local Image Sample Suggestion Chips -->
+            <div class="image-presets-wrap">
+              <div class="presets-label">Quick local image presets:</div>
+              <div class="presets-chips">
+                <span class="chip-preset" onclick="document.getElementById('add-product-image').value='../assets/images/aavin-milk.jpg'; document.getElementById('add-product-image').dispatchEvent(new Event('input'));">Milk</span>
+                <span class="chip-preset" onclick="document.getElementById('add-product-image').value='../assets/images/rice-bag.jpg'; document.getElementById('add-product-image').dispatchEvent(new Event('input'));">Rice</span>
+                <span class="chip-preset" onclick="document.getElementById('add-product-image').value='../assets/images/sugar-packet.jpg'; document.getElementById('add-product-image').dispatchEvent(new Event('input'));">Sugar</span>
+                <span class="chip-preset" onclick="document.getElementById('add-product-image').value='../assets/images/biscuits.jpg'; document.getElementById('add-product-image').dispatchEvent(new Event('input'));">Biscuits</span>
+                <span class="chip-preset" onclick="document.getElementById('add-product-image').value='../assets/images/cooking-oil.jpg'; document.getElementById('add-product-image').dispatchEvent(new Event('input'));">Cooking Oil</span>
+                <span class="chip-preset" onclick="document.getElementById('add-product-image').value='../assets/images/tea-powder.jpg'; document.getElementById('add-product-image').dispatchEvent(new Event('input'));">Tea</span>
+                <span class="chip-preset" onclick="document.getElementById('add-product-image').value='../assets/images/soap.jpg'; document.getElementById('add-product-image').dispatchEvent(new Event('input'));">Soap</span>
+                <span class="chip-preset" onclick="document.getElementById('add-product-image').value='../assets/images/shampoo.jpg'; document.getElementById('add-product-image').dispatchEvent(new Event('input'));">Shampoo</span>
+                <span class="chip-preset" onclick="document.getElementById('add-product-image').value='../assets/images/wheat-flour.jpg'; document.getElementById('add-product-image').dispatchEvent(new Event('input'));">Wheat Flour</span>
+                <span class="chip-preset" onclick="document.getElementById('add-product-image').value='../assets/images/salt.jpg'; document.getElementById('add-product-image').dispatchEvent(new Event('input'));">Salt</span>
+                <span class="chip-preset" onclick="document.getElementById('add-product-image').value='../assets/images/toothpaste.jpg'; document.getElementById('add-product-image').dispatchEvent(new Event('input'));">Toothpaste</span>
+                <span class="chip-preset" onclick="document.getElementById('add-product-image').value='../assets/images/detergent.jpg'; document.getElementById('add-product-image').dispatchEvent(new Event('input'));">Detergent</span>
+              </div>
+            </div>
+
+            <!-- Live Image Preview Box -->
+            <div class="image-preview-container">
+              <div class="image-preview-box">
+                <img id="add-product-preview-img" src="../assets/images/no-image.png" alt="Preview">
+              </div>
+              <div class="image-preview-info">
+                <strong>Live Photograph Preview</strong>
+                <p>The image above previews exactly how the photograph will display in tables and cards.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="add-product-cancel">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> Save Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Edit Product Modal -->
+  <div class="modal-backdrop" id="edit-product-modal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fa-solid fa-pen-to-square text-primary"></i> Edit Product Information</h3>
+        <button class="modal-close" id="edit-product-close" aria-label="Close">&times;</button>
+      </div>
+      <form id="edit-product-form">
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="edit-product-name" class="form-label">Product Name <span class="required">*</span></label>
+              <input type="text" id="edit-product-name" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="edit-product-sku" class="form-label">SKU / Product ID <span class="required">*</span></label>
+              <input type="text" id="edit-product-sku" class="form-control font-mono" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="edit-product-category" class="form-label">Category <span class="required">*</span></label>
+              <input type="text" id="edit-product-category" list="category-options-edit" class="form-control" required>
+              <datalist id="category-options-edit">
+                <option value="Dairy">
+                <option value="Grains">
+                <option value="Grocery">
+                <option value="Snacks">
+                <option value="Beverages">
+                <option value="Personal Care">
+                <option value="Household">
+              </datalist>
+            </div>
+            <div class="form-group">
+              <label for="edit-product-brand" class="form-label">Brand <span class="required">*</span></label>
+              <input type="text" id="edit-product-brand" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="edit-product-cost" class="form-label">Cost Price (₹) <span class="required">*</span></label>
+              <input type="number" id="edit-product-cost" class="form-control" min="0" step="0.01" required>
+            </div>
+            <div class="form-group">
+              <label for="edit-product-price" class="form-label">Selling Price (₹) <span class="required">*</span></label>
+              <input type="number" id="edit-product-price" class="form-control" min="0" step="0.01" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="edit-product-stock" class="form-label">Stock Quantity <span class="required">*</span></label>
+              <input type="number" id="edit-product-stock" class="form-control" min="0" step="1" required>
+            </div>
+            <div class="form-group">
+              <label for="edit-product-min-stock" class="form-label">Minimum Stock Alert Level <span class="required">*</span></label>
+              <input type="number" id="edit-product-min-stock" class="form-control" min="0" step="1" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="edit-product-image" class="form-label">Product Image URL / Local Path</label>
+            <input type="text" id="edit-product-image" class="form-control">
+
+            <!-- Live Image Preview Box -->
+            <div class="image-preview-container">
+              <div class="image-preview-box">
+                <img id="edit-product-preview-img" src="../assets/images/no-image.png" alt="Preview">
+              </div>
+              <div class="image-preview-info">
+                <strong>Current Photograph</strong>
+                <p>Verify that your image URL or local asset path loads cleanly without clipping.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="edit-product-cancel">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> Update Product Details</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../js/data.js"></script>
+  <script src="../js/common.js"></script>
+  <script src="../js/products.js"></script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+/* ==========================================================================
+   Vishal Hypermarket & Store Management System
+   Inventory Management Stylesheet
+   ========================================================================== */
+
+/* Summary Counter Pills */
+.inventory-summary-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.inv-stat-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.15rem 1.25rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.inv-stat-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.inv-stat-title {
+  font-size: 0.74rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.inv-stat-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-top: 0.2rem;
+}
+
+.inv-stat-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.inv-stat-total .inv-stat-icon { background-color: var(--primary-light); color: var(--primary); }
+.inv-stat-in .inv-stat-icon { background-color: var(--status-in-stock-bg); color: var(--status-in-stock); }
+.inv-stat-low .inv-stat-icon { background-color: var(--status-low-stock-bg); color: var(--status-low-stock); }
+.inv-stat-out .inv-stat-icon { background-color: var(--status-out-stock-bg); color: var(--status-out-stock); }
+
+/* Inventory stock number typography */
+.inventory-stock-number {
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Stock Adjust Modal Details Header */
+.adjust-modal-product-summary {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1rem;
+  background-color: var(--surface-alt);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  margin-bottom: 1.5rem;
+}
+
+.adjust-modal-thumb-box {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-sm);
+  background-color: #fff;
+  border: 1px solid var(--border);
+  padding: 4px;
+  flex-shrink: 0;
+}
+
+.adjust-modal-thumb-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.adjust-modal-meta {
+  flex: 1;
+}
+
+.adjust-modal-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.adjust-modal-sub {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.adjust-current-stock-box {
+  text-align: right;
+  padding-left: 1rem;
+  border-left: 1px solid var(--border);
+}
+
+.adjust-current-stock-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.adjust-current-stock-val {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-dark);
+}
+
+/* Real-time stock calculator display */
+.adjust-calc-preview-card {
+  background: linear-gradient(135deg, #f8fafc, #eff6ff);
+  border: 1px solid var(--primary-border);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.calc-formula-text {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-family: ui-monospace, monospace;
+}
+
+.calc-result-badge {
+  text-align: right;
+}
+
+.calc-result-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.calc-result-number {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+/* Negative stock warning */
+.adjust-error-alert {
+  display: none;
+  background-color: var(--status-out-stock-bg);
+  border: 1px solid var(--status-out-stock-border);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  color: var(--status-out-stock);
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 992px) {
+  .inventory-summary-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .inventory-summary-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .adjust-modal-product-summary {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .adjust-current-stock-box {
+    border-left: none;
+    border-top: 1px solid var(--border);
+    padding-left: 0;
+    padding-top: 0.5rem;
+    width: 100%;
+  }
+
+  .adjust-calc-preview-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+
+  .calc-result-badge {
+    text-align: center;
+  }
+}
